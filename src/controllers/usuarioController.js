@@ -1,5 +1,11 @@
+const crypto = require('crypto');
+
 let usuarios = [];
 let nextId = 1;
+
+function md5(value) {
+  return crypto.createHash('md5').update(value).digest('hex');
+}
 
 exports.criarUsuario = (req, res) => {
   try {
@@ -13,7 +19,8 @@ exports.criarUsuario = (req, res) => {
       id: nextId++,
       nome,
       email,
-      senha,
+      token: md5(email),
+      senha: md5(senha),
       idade: idade || null,
       saldo: 0,
     };
