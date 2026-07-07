@@ -1,0 +1,46 @@
+API - Usuários
+
+1) Criar usuário
+Método: POST
+URL: http://localhost:3001/usuarios
+Body (JSON):
+{
+  "nome": "Ana",
+  "email": "ana@email.com",
+  "senha": "123456",
+  "idade": 20
+}
+Resposta esperada: 201 Created com os dados do usuário criado.
+
+2) Listar usuários
+Método: GET
+URL: http://localhost:3001/usuarios
+Resposta esperada: 200 OK com a lista de usuários.
+
+3) Buscar usuário por ID
+Método: GET
+URL: http://localhost:3001/usuarios/1
+Resposta esperada: 200 OK com os dados do usuário com id 1.
+
+4) Adicionar crédito ao saldo
+Método: POST
+URL: http://localhost:3001/usuarios/1/creditar
+Body (JSON):
+{
+  "valor": 10
+}
+Resposta esperada: 200 OK com o saldo atualizado.
+
+5) Gastar saldo com passagem
+Método: POST
+URL: http://localhost:3001/usuarios/1/gastar-passagem
+Body (JSON):
+{
+  "valor": 3.5
+}
+Resposta esperada: 200 OK com o saldo atualizado após o gasto.
+
+Observações:
+- Se o saldo for menor que o valor da passagem, a API retorna erro 400.
+- Se o usuário não existir, a API retorna erro 404.
+- Use o header Content-Type: application/json em todas as rotas POST.

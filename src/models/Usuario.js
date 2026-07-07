@@ -18,7 +18,12 @@ const Usuario = sequelize.define('Usuario', {
   idade: {
     type: DataTypes.INTEGER,
     allowNull: true,
-  }
+  },
+  saldo: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: false,
+    defaultValue: 0.00,
+  },
 }, {
   tableName: 'usuarios',
   timestamps: true,
