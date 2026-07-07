@@ -1,14 +1,16 @@
 require('dotenv').config();
 
-const database = require('./src/config/database');
 const express = require('express');
-const Routes = require('./src/config/routes');
+const usuarioRoutes = require('./src/routes/usuarioRoutes');
 
-database.authenticate();
+const app = express();
 
-let app = express();
 app.use(express.json());
-Routes(app);
+app.use(express.urlencoded({ extended: true }));
+app.use('/usuarios', usuarioRoutes);
 
-database.sync({ alter: true });
-app.listen(3000, () => console.log('Servidor rodando em http://localhost:3000'));
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => {
+  console.log(`Servidor rodando em http://localhost:${port}`);
+});
